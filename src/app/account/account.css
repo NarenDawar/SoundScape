@@ -1,0 +1,71 @@
+.accountPage {
+    display: flex;
+    background-color: #171717;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.accountTitle {
+    display: flex;
+    color:plum;
+    margin-top: 1rem;
+    font-family: var(--font-montserrat);
+    font-size: 6rem;
+}
+
+/* Everything above is for the account page & title */
+
+.clearChats {
+    display: flex;
+    border: 0.1rem solid plum;
+    width: 80vw;
+    height: 4rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 1rem;
+}
+
+/* Above is for the clear chat block */
+
+.signOut {
+    display: flex;
+    border: 0.1rem solid plum;
+    width: 80vw;
+    height: 4rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 1rem;
+}
+
+/* Everything above is for the signOut block */
+
+.buttonLink {
+    display: flex;
+    margin-right: auto;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    width: 5%;
+    height: 3rem;
+    justify-content: center;
+}
+
+.backImage {
+    filter: brightness(0) saturate(100%) invert(93%) sepia(53%) saturate(5671%) hue-rotate(213deg) brightness(89%) contrast(93%);
+    height: 100%;
+    width: 100%;
+}
+
+/* Everything above just covers the back button */
+
+.signOutButton:hover {
+    cursor: pointer;
+}
+
+.deleteButton {
+    cursor: pointer;
+}

@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --accent-color: plum;
+  --border-radius: 10px;
+  --transition-speed: 0.3s;
 }
 
 @theme inline {
@@ -10,6 +13,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-mont: var(--font-montserrat);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +23,327 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.center-parts {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 8rem;
+  min-width: 0;
+  min-height: 0;
+}
+
+
+/* Everything above is for tailwind variables */
+
+.title-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  color: var(--accent-color);
+  font-family: var(--font-montserrat);
+  height: 10rem;
+  font-size: clamp(3rem, 5vw, 5rem);
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease-out;
+
+}
+
+.title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Everything above is for title styling */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}  
+
+.homePage {
+  display: flex;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color:#171717;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Everything above is for the homepage and white line remover. */
+
+.search-container {
+  z-index: 1;
+  display: flex;
+  width: clamp(10rem, 70vw, 50rem);
+  height: clamp(3rem, 6vh, 8rem);
+  justify-content: space-between;
+  flex-direction: row;
+  background-color: white;
+  border: solid 2px black;
+  border-radius: var(--border-radius);
+  align-items: center;
+  transition: box-shadow var(--transition-speed) ease;
+  min-width: 0;
+}
+
+.search-container:focus-within {
+  box-shadow: 0 0 10px white;
+}
+
+.search-input {
+  width: 75vw;
+  height: 6vh;
+  display: flex;
+  margin-left: 1vh;
+  outline: none;
+}
+
+.search-button {
+  display: flex;
+  margin-right: 1vh;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--accent-color);
+  border-radius: 5px;
+  align-items: center;
+  aspect-ratio: 1/1;
+  height: 80%;
+  width: auto;
+  transition: box-shadow var(--transition-speed) ease;
+}
+
+.search-button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--accent-color);
+}
+
+.uploadImage {
+  height: 60%;
+  width: 80%;
+}
+
+/* Everything above is for the search component */
+
+.navBar {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  align-self: flex-start;
+}
+
+.actualBar {
+  background-color: red;
+  width: 30%;
+}
+
+/* Above is the navbar that spans the page, has account and navBar */
+
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.account:hover {
+  cursor: pointer;
+}
+
+.accountImage {
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) saturate(100%) invert(93%) sepia(53%) saturate(5671%) hue-rotate(213deg) brightness(89%) contrast(93%);
+}
+
+.sideButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  z-index: 1;
+}
+
+.navImage {
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) saturate(100%) invert(93%) sepia(53%) saturate(5671%) hue-rotate(213deg) brightness(89%) contrast(93%);}
+
+.navImage:hover {
+  cursor: pointer;
+}
+
+
+/* Above is for the account information & sidebar button */
+
+.sideBar {
+  background-color:#171717;
+  position: fixed;
+  left: -15rem;
+  top: 0;
+  justify-content: lefts;
+  align-items: left;
+  flex-direction: column;
+  display: flex;
+  width: 15rem;
+  height: 100vh;
+  z-index: 2;
+  transition: left 0.3s ease;
+  box-shadow: 1px 0px 4px white;
+}
+
+.sideBar.open {
+  left: 0;
+}
+
+
+/* Above is for the side task bar */
+
+.closeButton {
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 0.5rem;
+  margin-top: 0.2rem;
+  cursor: pointer;
+}
+
+.closeImage {
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) saturate(100%) invert(93%) sepia(53%) saturate(5671%) hue-rotate(213deg) brightness(89%) contrast(93%);
+}
+
+/* Everything above is the close button / image */
+
+.bookmarkImage {
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) saturate(100%) invert(93%) sepia(53%) saturate(5671%) hue-rotate(213deg) brightness(89%) contrast(93%);
+}
+
+.bookmark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+  margin-top: 1rem;
+}
+
+.bookmarkRoute {
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.bookmark:hover {
+  cursor: pointer;
+}
+
+/* Everything above is for the bookmark button */
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  width: 60vw;
+}
+
+.loading-text {
+  display: flex;
+  opacity: 0;
+  font-size: 3.5rem;
+  font-family: var(--font-montserrat);
+  color: plum;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease-out;
+}
+
+.loading-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Everything above is for the loading component */
+
+.request-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  width: 80vw;
+}
+
+.request-text {
+  display: flex;
+  opacity: 0;
+  font-size: clamp(1rem, 3vw, 3rem);
+  font-family: var(--font-montserrat);
+  color: plum;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease-out;
+}
+
+.request-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.result-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 50vh;
+  width: 60vw;
+}
+
+.result-text {
+  display: flex;
+  opacity: 0;
+  font-size: clamp(0.1rem, 2vw, 2rem);
+  font-family: var(--font-montserrat);
+  color: plum;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease-out;
+}
+
+.result-text.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

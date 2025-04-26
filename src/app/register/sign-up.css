@@ -1,0 +1,60 @@
+.signUpPage {
+    display: flex;
+    background-color: #171717;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signUpTitle {
+    display: flex;
+    font-family: var(--font-montserrat);
+    color: plum;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+}
+
+.credentials {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.authInput {
+    color: black;
+    font-family: var(--font-montserrat);
+    background-color: white;
+    display: flex;
+    width: clamp(20rem, 50vw, 30rem);
+    height: clamp(2rem, 6vh, 4rem);
+    margin-top: 1.8rem;
+    outline: none;
+    border-radius: 0.7rem;
+    border: black 0.1rem solid;
+    transition: box-shadow 0.3s ease;
+    padding-left: 0.5rem;
+}
+
+.authInput:focus {
+    box-shadow: 0px 0px 9px plum;
+}
+
+.submitItems {
+    background-color: plum;
+    color: white;
+    font-family: var(--font-montserrat);
+    margin-top: 2rem;
+    width: clamp(5rem, 5vw, 6rem);
+    height: 2.3rem;
+    border: black 0.1rem solid;
+    border-radius: 1rem;
+    font-size: 1rem;
+}
+
+.submitItems:hover {
+    cursor: pointer;
+}
+

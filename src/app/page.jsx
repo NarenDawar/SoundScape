@@ -3,6 +3,7 @@ import { useSession, SessionProvider} from "next-auth/react";
 import { useRouter } from "next/router.js";
 import { useEffect, useState } from "react";
 import { getServerSession } from "next-auth";
+import OpenAI from "openai";
 
 import Image from "next/image";
 import Title from "./Title.jsx";
@@ -57,23 +58,27 @@ export default function Home() {
       setLoading(true);
       setSearchResult(prompt);
 
-      const response = await fetch("/api/generate", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ prompt: prompt })
-      });
+      const client = new OpenAI({
+        apiKey: process.env.NEXT_PUBLIC_OPEN_API_KEY,
+        dangerouslyAllowBrowser: true,
+    });
 
-      if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
-      }
-      
-      const data = await response.json();
-      console.log(data.result)
-      // setAiResponse(data.result);
-      
-      
+      const response = await client.chat.completions.create({
+        model: "gpt-4.1-nano",
+        messages: [
+            {
+                role: "system",
+                content: `Based on this prompt find real 3 songs that fit the mood / description.
+                Return this format: {"artist":artist, "title":title}`,
+            },
+            {
+                role: "user",
+                content: searchResult,
+            },
+        ],
+        temperature: 1.5,
+    });
+      setAiResponse(response.choices[0].message.content);
     } catch (error) {
       console.error("Error: ", error);
     } finally {
@@ -126,12 +131,7 @@ export default function Home() {
 
           { showRequest && (
             <div className="result-container">
-              {aiResponse.map((song, index) => (
-                <div className="result-text" key={index}>
-                  <h2>{song.title}</h2>
-                  <p>{song.creator}</p>
-              </div>
-              ))}
+              <h2 className={`result-text ${requestVisible ? "visible" : ""}`}>{aiResponse}</h2>
             </div>
           )}
 
